@@ -1,1 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import 'tailwindcss';
+
+@theme {
+  /* Primary */
+  --color-orange: hsl(26, 100%, 55%);
+  --color-pale-prange: hsl(25, 100%, 94%);
+  /* Neutral */
+  --color-very-dark-blue: hsl(220, 13%, 13%);
+  --color-dark-grayish-blue: hsl(219, 9%, 45%);
+  --color-grayish-blue: hsl(220, 14%, 75%);
+  --color-light-grayish-blue: hsl(223, 64%, 98%);
+  /* Black (with 75% opacity for lightbox background): hsl(0, 0%, 0%) */
+  --font-kumbh: 'Kumbh Sans';
+  /* Weights: 400, 700 */
+  /* Font size (paragraph): 16px */
+  --bottom-'4.5': '-14px';
+}
+
+.link-underline-hover {
+  @apply relative py-3 before:absolute before:bottom-[-18px] before:left-0 before:h-1 before:w-0 before:bg-orange-500 before:transition-all before:content-[''] hover:before:w-full;
+}
