@@ -16,7 +16,29 @@
   /* Font size (paragraph): 16px */
   --bottom-'4.5': '-14px';
 }
+@layer base {
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+}
 
 .link-underline-hover {
   @apply relative py-3 before:absolute before:bottom-[-18px] before:left-0 before:h-1 before:w-0 before:bg-orange-500 before:transition-all before:content-[''] hover:before:w-full;
+}
+
+.img-hover-effect {
+  @apply cursor-pointer overflow-hidden rounded-2xl border-2 border-transparent transition-all;
+}
+
+.img-hover-effect:hover {
+  @apply border-orange;
+}
+
+.img-hover-effect:hover img {
+  @apply opacity-40;
 }

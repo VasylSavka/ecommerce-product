@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <>
-      <header className="flex items-center justify-between py-4">
+      <header className="border-light-grayish-blue flex items-center justify-between border-b-3 py-4">
         <div className="flex">
           <Link to={'/product'}>
             <svg width="138" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,6 @@ const Header = () => {
           </a>
         </div>
       </header>
-      <hr className="text-grayish-blue" />
     </>
   );
 };
