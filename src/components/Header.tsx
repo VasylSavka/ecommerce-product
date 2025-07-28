@@ -2,8 +2,20 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <>
-      <header className="border-light-grayish-blue flex items-center justify-between border-b-3 py-4">
-        <div className="flex">
+      <header className="border-light-grayish-blue flex w-screen items-center justify-between px-4 py-4 lg:border-b-3">
+        <div className="flex items-center">
+          <svg
+            className="mt-2 mr-5 ml-4 cursor-pointer lg:hidden"
+            width="16"
+            height="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z"
+              fill="#69707D"
+              fillRule="evenodd"
+            />
+          </svg>
           <Link to={'/product'}>
             <svg width="138" height="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -13,7 +25,7 @@ const Header = () => {
               />
             </svg>
           </Link>
-          <nav className="text-dark-grayish-blue ml-12 space-x-5">
+          <nav className="text-dark-grayish-blue ml-12 hidden space-x-5 lg:block">
             <a className="link-underline-hover" href="#">
               Collections
             </a>
@@ -42,7 +54,7 @@ const Header = () => {
           <a href="#">
             <img
               src="assets\images\image-avatar.png"
-              className="border-orange ml-12 w-12 rounded-3xl hover:border-2"
+              className="border-orange ml-4 w-7 rounded-3xl hover:border-2 md:ml-8 md:w-12"
               alt="avatar"
             />
           </a>

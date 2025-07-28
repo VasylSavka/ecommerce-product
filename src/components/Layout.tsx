@@ -4,7 +4,7 @@ import Header from './Header';
 const Layout = () => {
   return (
     <>
-      <div className="font-kumbh mx-auto max-w-screen-xl px-4">
+      <div className="font-kumbh max-w-screen-2xl min-w-xs lg:mx-auto">
         <Header />
         <main>
           <Outlet />
