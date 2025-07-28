@@ -31,14 +31,14 @@
   @apply relative py-3 before:absolute before:bottom-[-18px] before:left-0 before:h-1 before:w-0 before:bg-orange-500 before:transition-all before:content-[''] hover:before:w-full;
 }
 
-.img-hover-effect {
+.img-effect {
   @apply cursor-pointer overflow-hidden rounded-2xl border-2 border-transparent transition-all;
 }
 
-.img-hover-effect:hover {
+.img-active-effect {
   @apply border-orange;
 }
 
-.img-hover-effect:hover img {
+.img-active-effect img {
   @apply opacity-40;
 }

@@ -4,6 +4,7 @@ import CounterButton from '../components/CounterButton';
 import ProductPrice from '../components/ProductPrice';
 import AddToCartButton from '../components/AddToCartButton';
 import MainImage from '../components/MainImage';
+import { useState } from 'react';
 
 const THUMBNAILS = [
   'image-product-1-thumbnail.jpg',
@@ -11,23 +12,44 @@ const THUMBNAILS = [
   'image-product-3-thumbnail.jpg',
   'image-product-4-thumbnail.jpg',
 ];
+const MainImages = [
+  'assets/images/image-product-1.jpg',
+  'assets/images/image-product-2.jpg',
+  'assets/images/image-product-3.jpg',
+  'assets/images/image-product-4.jpg',
+];
 
 const ProductPage = () => {
+  const [curImage, setCurImage] = useState(0);
+
+  const handleNextImage = () => {
+    setCurImage(prev => (prev >= MainImages.length - 1 ? 0 : prev + 1));
+  };
+  const handlePrevImage = () => {
+    setCurImage(prev => (prev <= 0 ? MainImages.length - 1 : prev - 1));
+  };
+  const handleThumbnail = (index: number) => {
+    setCurImage(index);
+  };
+
   return (
     <>
       <div className="flex-row lg:mt-20 lg:flex lg:px-12">
         <div className="relative lg:grid lg:max-h-[600px] lg:max-w-[400px] lg:grid-cols-4 lg:grid-rows-3 lg:gap-6">
-          <MainImage />
+          <MainImage curImage={MainImages[curImage]} />
           <div className="lg:hidden">
-            <ImageNavButton direction="left" />
-            <ImageNavButton direction="right" />
+            <ImageNavButton onClick={() => handlePrevImage()} direction="left" />
+            <ImageNavButton onClick={() => handleNextImage()} direction="right" />
           </div>
 
           {THUMBNAILS.map((src, i) => (
             <ProductThumbnail
+              key={i}
               src={`assets/images/${src}`}
               alt={`sneakers thumbnail ${i + 1}`}
-              key={i}
+              index={i}
+              onClick={handleThumbnail}
+              isActive={curImage === i}
             />
           ))}
         </div>
