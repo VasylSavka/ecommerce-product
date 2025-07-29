@@ -6,11 +6,8 @@ const CounterButton = ({ type }: { type: 'plus' | 'minus' }) => {
       : 'M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z';
 
   return (
-    <button
-      className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 transition hover:bg-gray-200"
-      aria-label={type}
-    >
-      <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+    <button className="flex h-8 w-8 cursor-pointer items-center justify-center" aria-label={type}>
+      <svg width="12" height={type === 'plus' ? '12' : 4} xmlns="http://www.w3.org/2000/svg">
         <defs>
           <path id={iconId} d={svgPath} />
         </defs>

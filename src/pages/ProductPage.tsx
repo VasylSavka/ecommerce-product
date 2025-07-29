@@ -5,6 +5,7 @@ import ProductPrice from '../components/ProductPrice';
 import AddToCartButton from '../components/AddToCartButton';
 import MainImage from '../components/MainImage';
 import { useState } from 'react';
+import ImageModal from '../components/ImageModal';
 
 const THUMBNAILS = [
   'image-product-1-thumbnail.jpg',
@@ -21,6 +22,7 @@ const MainImages = [
 
 const ProductPage = () => {
   const [curImage, setCurImage] = useState(0);
+  const [isModal, setIsModal] = useState(false);
 
   const handleNextImage = () => {
     setCurImage(prev => (prev >= MainImages.length - 1 ? 0 : prev + 1));
@@ -36,7 +38,7 @@ const ProductPage = () => {
     <>
       <div className="flex-row lg:mt-20 lg:flex lg:px-12">
         <div className="relative lg:grid lg:max-h-[600px] lg:max-w-[400px] lg:grid-cols-4 lg:grid-rows-3 lg:gap-6">
-          <MainImage curImage={MainImages[curImage]} />
+          <MainImage onClick={() => setIsModal(true)} curImage={MainImages[curImage]} />
           <div className="lg:hidden">
             <ImageNavButton onClick={() => handlePrevImage()} direction="left" />
             <ImageNavButton onClick={() => handleNextImage()} direction="right" />
@@ -53,6 +55,19 @@ const ProductPage = () => {
             />
           ))}
         </div>
+
+        {isModal && (
+          <ImageModal
+            images={MainImages}
+            thumbnails={THUMBNAILS}
+            currentIndex={curImage}
+            onClose={() => setIsModal(false)}
+            onNext={handleNextImage}
+            onPrev={handlePrevImage}
+            onSelectThumbnail={handleThumbnail}
+          />
+        )}
+
         <div className="text-dark-grayish-blue mx-auto max-w-[500px] px-6 pt-5 md:px-0 lg:ml-24 lg:max-w-[430px] lg:pt-10">
           <h4 className="">Sneaker Company</h4>
           <h1 className="text-very-dark-blue mt-2 mb-8">Fall Limited Edition Sneakers</h1>
