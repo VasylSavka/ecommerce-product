@@ -16,10 +16,15 @@ const ImageNavButton = ({
       aria-label={`${isLeft ? 'previous' : 'next'} image`}
       onClick={onClick}
     >
-      <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="hover:text-orange text-[#1D2026]"
+        width="13"
+        height="18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d={isLeft ? 'M11 1 3 9l8 8' : 'm2 1 8 8-8 8'}
-          stroke="#1D2026"
+          stroke="currentColor"
           strokeWidth="3"
           fill="none"
           fillRule="evenodd"
