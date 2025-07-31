@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SideBar from './SideBar';
 const Header = () => {
+  const [isModal, setIsModal] = useState(false);
   return (
     <>
       <header className="border-light-grayish-blue flex w-screen items-center justify-between px-4 py-4 lg:border-b-3">
@@ -9,6 +12,7 @@ const Header = () => {
             width="16"
             height="15"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => setIsModal(true)}
           >
             <path
               d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z"
@@ -16,6 +20,8 @@ const Header = () => {
               fillRule="evenodd"
             />
           </svg>
+          {isModal && <SideBar onClose={() => setIsModal(false)} />}
+
           <Link to={'/product'}>
             <svg width="138" height="20" xmlns="http://www.w3.org/2000/svg">
               <path
