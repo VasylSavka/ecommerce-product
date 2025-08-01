@@ -77,7 +77,7 @@ const ProductPage = () => {
           </p>
           <ProductPrice />
           <div className="flex flex-col lg:flex-row lg:justify-between">
-            <div className="bg-light-grayish-blue flex items-center justify-between rounded-xl px-3 py-3 lg:w-34">
+            <div className="bg-light-grayish-blue flex items-center justify-between rounded-xl px-3 py-3 lg:mr-4 lg:w-34">
               <CounterButton type="minus" />
               <span className="text-very-dark-blue text-sm font-bold">0</span>
               <CounterButton type="plus" />
