@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { useCart } from '../contexts/CartContext';
 
 export type CartItem = {
   id: string;
@@ -16,6 +17,7 @@ type CartDropdownProps = {
 };
 
 const CartDropdown = ({ isOpen, onClose, items }: CartDropdownProps) => {
+  const { removeItem } = useCart();
   const total = useMemo(() => items.reduce((s, it) => s + it.unitPrice * it.quantity, 0), [items]);
 
   useEffect(() => {
@@ -57,7 +59,11 @@ const CartDropdown = ({ isOpen, onClose, items }: CartDropdownProps) => {
                   </span>
                 </p>
               </div>
-              <button aria-label="remove item" className="ml-auto">
+              <button
+                onClick={() => removeItem(item.id)}
+                aria-label="remove item"
+                className="ml-auto"
+              >
                 <svg
                   width="14"
                   height="16"

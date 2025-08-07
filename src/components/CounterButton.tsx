@@ -1,4 +1,9 @@
-const CounterButton = ({ type }: { type: 'plus' | 'minus' }) => {
+type CounterButtonProps = {
+  type: 'plus' | 'minus';
+  onClick: () => void;
+};
+
+const CounterButton = ({ type, onClick }: CounterButtonProps) => {
   const iconId = type === 'plus' ? 'b' : 'a';
   const svgPath =
     type === 'plus'
@@ -6,7 +11,11 @@ const CounterButton = ({ type }: { type: 'plus' | 'minus' }) => {
       : 'M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z';
 
   return (
-    <button className="flex h-8 w-8 cursor-pointer items-center justify-center" aria-label={type}>
+    <button
+      onClick={onClick}
+      className="flex h-8 w-8 cursor-pointer items-center justify-center"
+      aria-label={type}
+    >
       <svg width="12" height={type === 'plus' ? '12' : 4} xmlns="http://www.w3.org/2000/svg">
         <defs>
           <path id={iconId} d={svgPath} />

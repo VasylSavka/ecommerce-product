@@ -6,6 +6,7 @@ import AddToCartButton from '../components/AddToCartButton';
 import MainImage from '../components/MainImage';
 import { useState } from 'react';
 import ImageModal from '../components/ImageModal';
+import { useCart } from '../contexts/CartContext';
 
 const THUMBNAILS = [
   'image-product-1-thumbnail.jpg',
@@ -20,9 +21,13 @@ const MainImages = [
   'assets/images/image-product-4.jpg',
 ];
 
+type QtyAction = 'plus' | 'minus';
+
 const ProductPage = () => {
   const [curImage, setCurImage] = useState(0);
   const [isModal, setIsModal] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const { addItem } = useCart();
 
   const handleNextImage = () => {
     setCurImage(prev => (prev >= MainImages.length - 1 ? 0 : prev + 1));
@@ -32,6 +37,24 @@ const ProductPage = () => {
   };
   const handleThumbnail = (index: number) => {
     setCurImage(index);
+  };
+
+  const handleQuantity = (action: QtyAction) => {
+    action === 'plus'
+      ? setQuantity(prev => prev + 1)
+      : setQuantity(prev => (prev > 0 ? prev - 1 : 0));
+  };
+
+  const handleAddToCart = () => {
+    if (quantity === 0) return;
+    addItem({
+      id: '1',
+      name: 'Fall Limited Edition Sneakers',
+      unitPrice: 125,
+      quantity,
+      image: 'assets/images/image-product-1.jpg',
+    });
+    setQuantity(0);
   };
 
   return (
@@ -78,11 +101,11 @@ const ProductPage = () => {
           <ProductPrice />
           <div className="flex flex-col lg:flex-row lg:justify-between">
             <div className="bg-light-grayish-blue flex items-center justify-between rounded-xl px-3 py-3 lg:mr-4 lg:w-34">
-              <CounterButton type="minus" />
-              <span className="text-very-dark-blue text-sm font-bold">0</span>
-              <CounterButton type="plus" />
+              <CounterButton onClick={() => handleQuantity('minus')} type="minus" />
+              <span className="text-very-dark-blue text-sm font-bold">{quantity}</span>
+              <CounterButton onClick={() => handleQuantity('plus')} type="plus" />
             </div>
-            <AddToCartButton />
+            <AddToCartButton onClick={handleAddToCart} />
           </div>
         </div>
       </div>
